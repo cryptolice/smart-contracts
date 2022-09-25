@@ -8,6 +8,7 @@ contract UrlRequests is usingProvable {
     event LogConstructorInitiated(string nextStep);
     event LogNewProvableQuery(string description);
     event LogResult(string result);
+    address public constant NFT_CONTRACT = 0xc171D77FC466307Ee5dAF9F89cA5B3Ab5F0EE4b7;
 
     constructor()
         public
@@ -70,6 +71,9 @@ contract UrlRequests is usingProvable {
             emit LogResult('{"status":"NULL"}');
             return '{"status":"NULL"}';
         }
+
+        NFT_CONTRACT.call(abi.encodeWithSignature("safeMint"));
+
         // Should call request to get real Avenger risk evaluation results
     }
 
